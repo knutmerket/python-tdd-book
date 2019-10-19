@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn server for DOMAIN
+
+[Service]
+Restart=on-failure
+User=knutmerket
+WorkingDirectory=/home/knutmerket/sites/DOMAIN
+EnvironmentFile=/home/knutmerket/sites/DOMAIN/.env
+
+ExecStart=/home/knutmerket/sites/todolist-staging.knutjacobsen.com/virtualenv/bin/gunicorn \
+	--bind unix:/tmp/DOMAIN.socket superlists.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
